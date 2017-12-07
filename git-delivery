@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# git delivery HEAD~1..HEAD dir
+# => git diff --name-only {HEAD~1..HEAD} | git checkout-index --stdin --prefix={dir}
+
+function usage() {
+  echo "Usage: git delivery rev dir"
+}
+
+if [ $# == 2 ]; then
+  git diff --name-only $1 | git checkout-index --stdin --prefix=$2
+else
+  usage
+fi
